@@ -1,0 +1,108 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// Ensure components exist before importing
+import NotFound from "./pages/NotFound";
+
+// Lazy import with error handling
+const loadComponent = (path) => {
+  return React.lazy(() =>
+    import(`${path}`).catch((err) => {
+      console.error(`Error loading ${path}:`, err);
+      return import("./pages/NotFound");
+    })
+  );
+};
+
+const Home = loadComponent("./pages/Home");
+const Menu = loadComponent("./pages/Menu");
+const Order = loadComponent("./pages/Order");
+const Admin = loadComponent("./pages/Admin");
+const Payment = loadComponent("./pages/Payment");
+const Subscription = loadComponent("./pages/Subscription");
+const Dashboard = loadComponent("./pages/Dashboard");
+const ExportData = loadComponent("./pages/ExportData");
+const UserManagement = loadComponent("./pages/UserManagement");
+const Analytics = loadComponent("./pages/Analytics");
+const Inventory = loadComponent("./pages/Inventory");
+const Suppliers = loadComponent("./pages/Suppliers");
+const Promotions = loadComponent("./pages/Promotions");
+const Reviews = loadComponent("./pages/Reviews");
+const FAQ = loadComponent("./pages/FAQ");
+const Support = loadComponent("./pages/Support");
+const Notifications = loadComponent("./pages/Notifications");
+const Settings = loadComponent("./pages/Settings");
+const Messaging = loadComponent("./pages/Messaging");
+const Tickets = loadComponent("./pages/Tickets");
+const Blog = loadComponent("./pages/Blog");
+const PushNotifications = loadComponent("./pages/PushNotifications");
+const NotificationSettings = loadComponent("./pages/NotificationSettings");
+const Referral = loadComponent("./pages/Referral");
+const Rewards = loadComponent("./pages/Rewards");
+const PromoCodes = loadComponent("./pages/PromoCodes");
+const MobileMoneyPayment = loadComponent("./pages/MobileMoneyPayment");
+const CardPayment = loadComponent("./pages/CardPayment");
+const PaymentTest = loadComponent("./pages/PaymentTest");
+const PaymentSettings = loadComponent("./pages/PaymentSettings");
+const PaymentTracking = loadComponent("./pages/PaymentTracking");
+const PaymentReports = loadComponent("./pages/PaymentReports");
+const DeferredPayments = loadComponent("./pages/DeferredPayments");
+const PaymentReminders = loadComponent("./pages/PaymentReminders");
+const LatePaymentFees = loadComponent("./pages/LatePaymentFees");
+const PaymentAPI = loadComponent("./pages/PaymentAPI");
+const FinancialDashboard = loadComponent("./pages/FinancialDashboard");
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/export" element={<ExportData />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/users" element={<UserManagement />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/promotions" element={<Promotions />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/messaging" element={<Messaging />} />
+          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/push-notifications" element={<PushNotifications />} />
+          <Route path="/notification-settings" element={<NotificationSettings />} />
+          <Route path="/referral" element={<Referral />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/promo-codes" element={<PromoCodes />} />
+          <Route path="/mobile-money-payment" element={<MobileMoneyPayment />} />
+          <Route path="/card-payment" element={<CardPayment />} />
+          <Route path="/payment-test" element={<PaymentTest />} />
+          <Route path="/payment-settings" element={<PaymentSettings />} />
+          <Route path="/payment-tracking" element={<PaymentTracking />} />
+          <Route path="/payment-reports" element={<PaymentReports />} />
+          <Route path="/deferred-payments" element={<DeferredPayments />} />
+          <Route path="/payment-reminders" element={<PaymentReminders />} />
+          <Route path="/late-payment-fees" element={<LatePaymentFees />} />
+          <Route path="/payment-api" element={<PaymentAPI />} />
+          <Route path="/financial-dashboard" element={<FinancialDashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </React.Suspense>
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
